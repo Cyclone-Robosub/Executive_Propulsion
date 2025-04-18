@@ -27,7 +27,6 @@ TEST(CommandInterpreterTest, CreateCommandInterpreter) {
         expectedOutput.append(std::to_string(pinNumber));
         expectedOutput.append(" PWM 1500\n");
     }
-
     ASSERT_EQ(pinStatus.size(), 8);
     ASSERT_EQ(pinStatus, (std::vector<int>{1500, 1500, 1500, 1500, 1500, 1500, 1500, 1500}));
     ASSERT_EQ(output, expectedOutput);
