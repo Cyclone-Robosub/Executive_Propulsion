@@ -167,6 +167,8 @@ private:
     std::ostream &outLog;
     std::ostream &errorLog;
 
+    bool isInterruptBlind_Execute;
+
 public:
     /// @param thrusterPins the PWM pins that will drive robot thrusters
     /// @param digitalPins non-PWM pins to be used for digital (2-state) output
@@ -193,6 +195,9 @@ public:
     /// @brief Get the current pwm values of all the pins.
     /// @return A vector containing the current value of all pins. PWM pins will return a value in the range [1100, 1900]
     std::vector<int> readPins();
+
+    /// @brief Set an interrupt for the blind_execute function while running. Calling this function sets the interrupt to occur.
+    void  interruptBlind_Execute() {isInterruptBlind_Execute = true;}
 
     ~Command_Interpreter_RPi5(); //TODO this also deletes all its pins. Not sure if this is desirable or not?
 };

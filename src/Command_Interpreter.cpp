@@ -127,8 +127,7 @@ Command_Interpreter_RPi5::Command_Interpreter_RPi5(std::vector<PwmPin *> thruste
                                                    const WiringControl &wiringControl, std::ostream &output,
                                                    std::ostream &outLog, std::ostream &errorLog) :
         thrusterPins(std::move(thrusterPins)), digitalPins(std::move(digitalPins)), wiringControl(wiringControl),
-        errorLog(errorLog),
-        outLog(outLog), output(output) {
+        errorLog(errorLog), outLog(outLog), output(output), isInterruptBlind_Execute(false) {
     if (this->thrusterPins.size() != 8) {
         errorLog << "Incorrect number of thruster pwm pins given! Need 8, given " << this->thrusterPins.size()
                  << std::endl;
@@ -168,13 +167,14 @@ Command_Interpreter_RPi5::~Command_Interpreter_RPi5() {
 }
 
 void Command_Interpreter_RPi5::timed_execute(const CommandComponent &commandComponent) {
+    isInterruptBlind_Execute = false;
     auto endTime = std::chrono::system_clock::now() + commandComponent.duration;
     auto currentTime = std::chrono::system_clock::now();
     untimed_execute(commandComponent.thruster_pwms);
-    while (currentTime < endTime) {
-
+    while (currentTime < endTime && !isInterruptBlind_Execute) {
         currentTime = std::chrono::system_clock::now();
     }
+    isInterruptBlind_Execute = false;
 }
 
 void Command_Interpreter_RPi5::untimed_execute(pwm_array thrusterPwms) {
