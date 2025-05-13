@@ -1,9 +1,9 @@
-#include "Command_Interpreter.h"
+#include "Command_Interpreter.hpp"
 #include <gtest/gtest.h>
 
 #ifndef MOCK_RPI
 
-#include "Serial.h"
+#include "Serial.hpp"
 
 #else
 
@@ -202,7 +202,7 @@ TEST(CommandInterpreterTest, BlindExecuteHardwarePwm) {
                                                     std::cerr);
     interpreter->initializePins();
     auto startTime = std::chrono::system_clock::now();
-    interpreter->blind_execute(acceleration);
+    interpreter->timed_execute(acceleration);
     auto endTime = std::chrono::system_clock::now();
     std::string output = testing::internal::GetCapturedStdout();
     auto pinStatus = interpreter->readPins();
@@ -267,7 +267,7 @@ TEST(CommandInterpreterTest, BlindExecuteSoftwarePwm) {
                                                     std::cerr);
     interpreter->initializePins();
     auto startTime = std::chrono::system_clock::now();
-    interpreter->blind_execute(acceleration);
+    interpreter->timed_execute(acceleration);
     auto endTime = std::chrono::system_clock::now();
     std::string output = testing::internal::GetCapturedStdout();
     auto pinStatus = interpreter->readPins();

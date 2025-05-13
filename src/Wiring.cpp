@@ -1,6 +1,6 @@
 // William Barber
 
-#include "Wiring.h"
+#include "Wiring.hpp"
 
 #include <iostream>
 #include <string>
@@ -20,7 +20,7 @@ void WiringControl::printToSerial(const std::string& message) {
 
 #else
 
-#include "Serial.h"
+#include "Serial.hpp"
 
 bool WiringControl::initializeSerial() {
     if ((serial = serialOpen("/dev/serial/by-id/usb-MicroPython_Board_in_FS_mode_e66130100f198434-if00", 115200)) < 0) {

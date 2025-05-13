@@ -12,7 +12,7 @@ endif()
 
 # Include paths
 include_directories(
-    ${PROJECT_SOURCE_DIR}/lib
+    ${PROJECT_SOURCE_DIR}/src
     ${PROJECT_SOURCE_DIR}/testing
 )
 
@@ -30,26 +30,26 @@ enable_testing()
 # Define test target
 add_executable(propulsion_test
     testing/Command_Interpreter_Testing.cpp
-    lib/Command.h
-    lib/Command_Interpreter.cpp
-    lib/Command_Interpreter.h
-    lib/Wiring.cpp
-    lib/Wiring.h
-    lib/Serial.cpp
-    lib/Serial.h
+    src/Command.hpp
+    src/Command_Interpreter.cpp
+    src/Command_Interpreter.hpp
+    src/Wiring.cpp
+    src/Wiring.hpp
+    src/Serial.cpp
+    src/Serial.hpp
 )
 
 # Always link GTest
 target_link_libraries(propulsion_test GTest::gtest_main)
 
 add_library(PropulsionFunctions
-        lib/Command.h
-        lib/Command_Interpreter.cpp
-        lib/Command_Interpreter.h
-        lib/Wiring.cpp
-        lib/Wiring.h
-        lib/Serial.cpp
-        lib/Serial.h
+        src/Command.hpp
+        src/Command_Interpreter.cpp
+        src/Command_Interpreter.hpp
+        src/Wiring.cpp
+        src/Wiring.hpp
+        src/Serial.cpp
+        src/Serial.hpp
 )
 include(GoogleTest)
 

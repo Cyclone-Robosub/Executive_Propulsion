@@ -28,10 +28,10 @@ Installation for these prerequisites varies from system to system. You can check
     - See **"Making a New Branch"**.
 2. In the terminal, navigate to the project root.
 3. Run the command `git add {args}`, where `{args}` is every file that you changed and wish to push to the repo.
-    - For example, if you changed the files `Command.h`, `Command_Interpreter.cpp`, and `Command_Interpreter.h`, your
+    - For example, if you changed the files `Command.hpp`, `Command_Interpreter.cpp`, and `Command_Interpreter.hpp`, your
    command could look like:
    ```bash
-    git add Command.h Command_Interpreter.* 
+    git add Command.hpp Command_Interpreter.* 
    ```
 4. Type a commit title on the first line in the text editor window that pops up. Keep this concise but meaningful.
 5. Type a longer commit description two lines below this (hit enter twice) with more information on the commit, if needed.
@@ -59,7 +59,7 @@ Installation for these prerequisites varies from system to system. You can check
 ## Navigating the Project
 
 ### Project Structure
-- Code that we write lives in `lib/`.
+- Code that we write lives in `src/`.
 - Code that we write for unit testing (to make sure our code is correct) lives in `testing/`.
 - Other libraries that we use have their own directories as well, named correspondingly.
 - You'll make your own `build/` folder (see **"Using Cmake to Build Code"**)
@@ -80,14 +80,14 @@ Installation for these prerequisites varies from system to system. You can check
 
 ### Using CMake to Build Code
 #### Build for a Non-Pi machine (i.e. a regular computer)
-1. Open the terminal and `cd` to the project root. If you run `ls` here, you should see folders with names `lib/`, `testing/`, etc.
+1. Open the terminal and `cd` to the project root. If you run `ls` here, you should see folders with names `src/`, `testing/`, etc.
 2. Run `cmake -DMOCK_RPI=ON -B build`
 3. Run `cd build`
 4. Run `make`. You should get one executables: `propulsion_test`.
 5. Run with `./propulsion_test`.
 
 #### Build for a Pi
-1. Open the terminal and `cd` to the project root. If you run `ls` here, you should see folders with names `lib/`, `testing/`, etc.
+1. Open the terminal and `cd` to the project root. If you run `ls` here, you should see folders with names `src/`, `testing/`, etc.
 2. Run `cmake -B build`
 3. Run `cd build`
 4. Run `make`. You should get one executable: `propulsion_test`.
@@ -151,13 +151,13 @@ Command_Interpreter is designed to run on a Raspberry Pi 5 (or 4). It is used to
 To run this code, you must have WiringPi installed. Additionally, you will need to update the ID of the Rasberry Pi Pico in the `Command_Interpreter_Testing` and `Wiring.cpp` files to the corresponding name (found in `\dev\serial\by-id\`). The Pico should be running the code from the MicroPython Pool Testing repo (https://github.com/Cyclone-Robosub/micro-python-pool-test/).
 
 ## Command_Intepreter.*
-These and `Command.h` are the only files that contains code that you should have to actively interact with. Functions should be heavily documented, so it is encouraged to hover over function names to see what parameters represent and how functions should be used.
+These and `Command.hpp` are the only files that contains code that you should have to actively interact with. Functions should be heavily documented, so it is encouraged to hover over function names to see what parameters represent and how functions should be used.
 
 A Command Interpreter object needs to be given thruster pins and digital pins (although these can be empty if a certain pin type is unused). Thruster pins are those that are to be used to signal to the robot thrusters, and can be either Hardware or Software PWM pins. If you're running off of a Pico (and you probably are), they should be Hardware PWM. Additionally, it needs to be a given three output streams: output, outLog, and errorLog. Output is where standard messages should be sent (you probably want this to be std::cout so that messages are sent to stdout), outLog is where you want standard logging messages to be sent, and errorLog is where you want error messages to be logged. These can be set to the same file if you want everything consolidated, or to `\dev\null` if you want them sent into the abyss.
 
 Once a Command Interpreter is created, with the appropriate pins designated for thrusters and digital pins, execute commands can be sent through the execute functions. These commands will be relayed to the Pi Pico, which will set the corresponding pins to the specified PWM values.
 
-## Command.h
+## Command.hpp
 This specifies the components of a command to be passed to the Command Interpreter. There are three componenents: acceleration, steady-state, and deceleration. The idea is that the command will bring the robot up to a certain velocity, then maintain that velocity for a certain amount of time, then decelerate back to stopped. PWMs and durations can be specified per each component. If the component is unnecessary (i.e. only a steady-state component is desired), then the other components should be set to a duration of $0$ and the PWMs set to the same values as the used component.
 
 ## Wiring.*
