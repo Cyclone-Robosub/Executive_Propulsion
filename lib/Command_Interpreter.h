@@ -188,7 +188,7 @@ public:
     /// @brief Executes a command without self-correction. Sets pwm values for the duration specified. Does not stop
     /// thrusters after execution.
     /// @param command a command struct with three sub-components: the acceleration, steady-state, and deceleration.
-    void blind_execute(const CommandComponent &command);
+    void timed_execute(const CommandComponent &command);
 
     /// @brief Get the current pwm values of all the pins.
     /// @return A vector containing the current value of all pins. PWM pins will return a value in the range [1100, 1900]

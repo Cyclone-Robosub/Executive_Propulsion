@@ -167,7 +167,7 @@ Command_Interpreter_RPi5::~Command_Interpreter_RPi5() {
     }
 }
 
-void Command_Interpreter_RPi5::blind_execute(const CommandComponent &commandComponent) {
+void Command_Interpreter_RPi5::timed_execute(const CommandComponent &commandComponent) {
     auto endTime = std::chrono::system_clock::now() + commandComponent.duration;
     auto currentTime = std::chrono::system_clock::now();
     untimed_execute(commandComponent.thruster_pwms);
