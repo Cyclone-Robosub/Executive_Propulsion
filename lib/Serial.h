@@ -10,7 +10,7 @@
 #include <cstdint>
 #include <string>
 
-int serialOpen (const char *device, const int baud);
+int serialOpen(const char *device, const int baud);
 void serialPuts(const int fd, const char *s);
 int serialGetchar (const int fd);
 void echoOn(int serial);

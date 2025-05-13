@@ -48,6 +48,8 @@ add_library(PropulsionFunctions
         lib/Command_Interpreter.h
         lib/Wiring.cpp
         lib/Wiring.h
+        lib/Serial.cpp
+        lib/Serial.h
 )
 include(GoogleTest)
 

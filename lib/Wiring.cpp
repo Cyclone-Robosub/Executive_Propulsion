@@ -20,7 +20,7 @@ void WiringControl::printToSerial(const std::string& message) {
 
 #else
 
-#include <Serial.h>
+#include "Serial.h"
 
 bool WiringControl::initializeSerial() {
     if ((serial = serialOpen("/dev/serial/by-id/usb-MicroPython_Board_in_FS_mode_e66130100f198434-if00", 115200)) < 0) {

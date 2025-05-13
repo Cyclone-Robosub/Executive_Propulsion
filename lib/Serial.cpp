@@ -3,7 +3,7 @@
 #include "Serial.h"
 
 
-int serialOpen (const char *device, const int baud) { //from WiringPi
+int serialOpen(const char *device, const int baud) { //from WiringPi
   struct termios options ;
   speed_t myBaud ;
   int     status, fd ;
