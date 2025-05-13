@@ -3,9 +3,9 @@
 #include <fstream>
 #include <ctime>
 #include <utility>
-#include "Serial.h"
-#include "Command_Interpreter.h"
-#include "Wiring.h"
+#include "Serial.hpp"
+#include "Command_Interpreter.hpp"
+#include "Wiring.hpp"
 
 void DigitalPin::initialize(WiringControl &wiringControl) {
     switch (enableType) {

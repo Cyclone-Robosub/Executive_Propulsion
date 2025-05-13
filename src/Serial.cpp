@@ -1,6 +1,6 @@
 #ifndef MOCK_RPI
 
-#include "Serial.h"
+#include "Serial.hpp"
 
 
 int serialOpen(const char *device, const int baud) { //from WiringPi

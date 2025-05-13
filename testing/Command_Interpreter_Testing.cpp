@@ -1,9 +1,9 @@
-#include "Command_Interpreter.h"
+#include "Command_Interpreter.hpp"
 #include <gtest/gtest.h>
 
 #ifndef MOCK_RPI
 
-#include "Serial.h"
+#include "Serial.hpp"
 
 #else
 

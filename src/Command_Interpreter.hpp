@@ -1,8 +1,8 @@
 // William Barber
 #pragma once
 
-#include "Command.h"
-#include "Wiring.h"
+#include "Command.hpp"
+#include "Wiring.hpp"
 #include <vector>
 #include <fstream>
 
