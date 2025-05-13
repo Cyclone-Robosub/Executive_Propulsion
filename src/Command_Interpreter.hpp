@@ -167,7 +167,7 @@ private:
     std::ostream &outLog;
     std::ostream &errorLog;
 
-    bool isInterruptBlind_Execute;
+    bool isInterruptTimed_Execute;
 
 public:
     /// @param thrusterPins the PWM pins that will drive robot thrusters
@@ -197,7 +197,7 @@ public:
     std::vector<int> readPins();
 
     /// @brief Set an interrupt for the blind_execute function while running. Calling this function sets the interrupt to occur.
-    void  interruptBlind_Execute() {isInterruptBlind_Execute = true;}
+    void  interruptTimed_Execute() {isInterruptTimed_Execute = true;}
 
     ~Command_Interpreter_RPi5(); //TODO this also deletes all its pins. Not sure if this is desirable or not?
 };
